@@ -7,7 +7,10 @@ const busSchema = new mongoose.Schema({
         trim: true
     },
     capacity: Number,
-    isActive: true
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 },{timestamps: true})
 
 

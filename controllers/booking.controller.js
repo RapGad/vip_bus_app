@@ -3,7 +3,7 @@ const Trip = require('../models/Trip');
 const { nanoid } = require('nanoid')
 const bookSeat = async (req, res) => {
   try {
-    const userId = req.user.id;  // assume auth middleware sets this
+    const userId = req.userId;  // assume auth middleware sets this
     const { tripId, seatNumber, pickupPoint } = req.body;
 
     if (!tripId || !seatNumber || !pickupPoint) {
