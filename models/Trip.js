@@ -7,7 +7,7 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  departureTime: { type: Date, required: true },
+  departureTime: { type: String, required: true },
   status: { 
     type: String, 
     enum: ['loading', 'departed', 'completed', 'cancelled'], 

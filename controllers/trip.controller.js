@@ -4,14 +4,14 @@ const Route = require('../models/Route');
 
 const createTrip = async (req, res) => {
   try {
-    const { busId, routeId, departureTime, price } = req.body;
+    const { busNumber, routeId, departureTime} = req.body;
 
-    if (!busId || !routeId || !departureTime || !price) {
+    if (!busNumber || !routeId || !departureTime) {
       return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
     // Optional: check if bus and route exist
-    const bus = await Bus.findById(busId);
+    const bus = await Bus.findOne({busNumber});
     if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
 
     const route = await Route.findById(routeId);
@@ -22,7 +22,7 @@ const createTrip = async (req, res) => {
       busNumber: bus.busNumber,
       route: route._id,
       departureTime,
-      price,
+      price: route.price,
       status: 'loading',
       bookedSeats: []
     });
